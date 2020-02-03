@@ -32,13 +32,16 @@ WORKDIR /root
 
 # git clone mintpy
 ENV MINTPY_HOME "/root/MintPy"
+ENV PYAPS_HOME "/root/PyAPS"
 RUN git clone https://github.com/insarlab/MintPy.git ${MINTPY_HOME}
+RUN git clone https://github.com/yunjunz/pyaps3.git ${PYAPS_HOME}/pyaps3
 RUN conda env create -f ${MINTPY_HOME}/docs/conda_env.yml
 RUN conda clean --all --yes
 
 # activating mintpy environment
 RUN echo "conda activate mintpy" >> /root/.bashrc
 ENV PYTHONPATH ${PYTHONPATH}:${MINTPY_HOME}
+ENV PYTHONPATH ${PYTHONPATH}:${PYAPS_HOME}
 ENV PATH ${PATH}:${MINTPY_HOME}/mintpy
 
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
