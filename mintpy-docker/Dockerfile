@@ -30,13 +30,11 @@ RUN chmod +x /usr/bin/tini
 # changing work directories
 WORKDIR /root
 
-# install gdal
-RUN conda install --quiet --yes 'gdal=3.0.*' 
 
 # git clone mintpy
 ENV MINTPY_HOME "/root/MintPy"
 ENV PYAPS_HOME "/root/PyAPS"
-RUN git clone https://github.com/insarlab/MintPy.git ${MINTPY_HOME}
+RUN git clone https://github.com/earthobservatory/MintPy.git -b v1.2.1_gdal ${MINTPY_HOME}
 RUN git clone https://github.com/yunjunz/pyaps3.git ${PYAPS_HOME}/pyaps3
 RUN conda env create -f ${MINTPY_HOME}/docs/conda_env.yml
 RUN conda clean --all --yes

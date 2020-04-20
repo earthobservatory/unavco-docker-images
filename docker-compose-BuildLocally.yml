@@ -1,16 +1,15 @@
 version: '2.2'
 services:
-  gdal:
-    build:
-      context: ./debian-gdal
-      dockerfile: Dockerfile
-    tty: true
-
-#  mintpy:
+#  gdal:
 #    build:
-#      context: ./mintpy-docker
+#      context: ./debian-gdal
 #      dockerfile: Dockerfile
 #    tty: true
+  mintpy:
+    build:
+      context: ./mintpy-docker
+      dockerfile: Dockerfile
+    tty: true
 
 #  aria-tools:
 #    build:
